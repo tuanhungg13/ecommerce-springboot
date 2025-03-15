@@ -1,10 +1,8 @@
 package dev.mobile.ecommerce.repository;
 
-import dev.mobile.ecommerce.models.Order;
+import dev.mobile.ecommerce.models.OrderItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OrderRepository extends JpaRepository<Order, Long> {
-}
-
+public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {}

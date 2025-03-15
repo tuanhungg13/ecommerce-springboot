@@ -1,4 +1,4 @@
 package dev.mobile.ecommerce.repository;
 
-public class ProductRepository {
+public interface ProductRepository {
 }

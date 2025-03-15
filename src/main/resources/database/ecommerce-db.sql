@@ -96,9 +96,9 @@ CREATE TABLE cartItems (
     discount DOUBLE,
     quantity INT,
     cartId BIGINT,
-    productId BIGINT,
+    variantId BIGINT,
     FOREIGN KEY (cartId) REFERENCES carts(cartId) ON DELETE CASCADE,
-    FOREIGN KEY (productId) REFERENCES products(productId) ON DELETE CASCADE
+    FOREIGN KEY (variantId) REFERENCES productVariants(variantId) ON DELETE CASCADE
 );
 
 CREATE TABLE payments (
@@ -108,12 +108,15 @@ CREATE TABLE payments (
 
 CREATE TABLE orders (
     orderId BIGINT PRIMARY KEY AUTO_INCREMENT,
-    uid varchar(255),
-    email VARCHAR(100) NOT NULL,
+    uid varchar(255) ,
+    shippingPhoneNumber varchar(255) NOT NULL,
+    shippingAddress varchar(255) NOT NULL,
+    customerName VARCHAR(100) NOT NULL,
     orderDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     orderStatus ENUM('PENDING', 'CONFIRMED', 'SHIPPED', 'DELIVERED', 'CANCELLED') DEFAULT 'PENDING',
     totalAmount DECIMAL(10,2) NOT NULL,
     paymentId BIGINT,
+    discount DOUBLE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (paymentId) REFERENCES payments(paymentId) ON DELETE SET NULL,
@@ -127,9 +130,9 @@ CREATE TABLE orderItems (
     orderedProductPrice DOUBLE,
     quantity INT,
     orderId BIGINT,
-    productId BIGINT,
+    variantId BIGINT,
     FOREIGN KEY (orderId) REFERENCES orders(orderId) ON DELETE CASCADE,
-    FOREIGN KEY (productId) REFERENCES products(productId) ON DELETE CASCADE
+    FOREIGN KEY (variantId) REFERENCES productVariants(variantId) ON DELETE CASCADE
 );
 
 CREATE TABLE ratingProduct (
